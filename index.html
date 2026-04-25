@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500;700&display=swap">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
     :root {
       --primary: #1A73E8;
       --primary-dark: #1557B0;
@@ -23,233 +22,72 @@
       --text: #202124;
       --text-2: #5F6368;
       --text-3: #80868B;
-      --google-blue: #4285F4;
-      --google-red: #EA4335;
-      --google-yellow: #FBBC05;
-      --google-green: #34A853;
       --shadow-1: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
       --shadow-2: 0 1px 2px 0 rgba(60,64,67,.3), 0 2px 6px 2px rgba(60,64,67,.15);
-      --shadow-3: 0 4px 8px 3px rgba(60,64,67,.15), 0 1px 3px rgba(60,64,67,.3);
-      --radius-sm: 8px;
-      --radius-md: 12px;
       --radius-lg: 16px;
-      --radius-xl: 24px;
     }
-
     html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Roboto', 'Noto Sans JP', sans-serif;
-      background: var(--surface-variant);
-      color: var(--text);
-      line-height: 1.6;
-      min-height: 100vh;
-    }
-
-    /* ── NAV ── */
-    .top-nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      height: 64px;
-      padding: 0 24px;
-      display: flex; align-items: center; justify-content: space-between;
-      background: var(--surface);
-      border-bottom: 1px solid var(--outline-variant);
-      transition: box-shadow .2s;
-    }
-    .top-nav.scrolled { box-shadow: var(--shadow-1); border-bottom-color: transparent; }
-
-    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-    .nav-logo-img {
-      width: 40px; height: 40px; border-radius: 50%; object-fit: cover;
-      border: 2px solid var(--outline);
-    }
-    .nav-logo-name {
-      font-family: 'Google Sans', 'Roboto', sans-serif;
-      font-size: 1.1rem; font-weight: 500; color: var(--text);
-      letter-spacing: 0;
-    }
-
-    .nav-links { display: flex; gap: 4px; list-style: none; }
-    .nav-links a {
-      display: inline-block;
-      padding: 8px 16px; border-radius: 999px;
-      font-size: 0.875rem; font-weight: 500;
-      color: var(--text-2); text-decoration: none;
-      transition: background .15s, color .15s;
-    }
-    .nav-links a:hover { background: var(--surface-2); color: var(--text); }
-
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display: flex; align-items: center; justify-content: center;
-      padding: 96px 24px 64px;
-      background: var(--surface);
-    }
-    .hero-inner {
-      max-width: 720px; width: 100%;
-      display: flex; align-items: center; gap: 64px;
-    }
-    .hero-photo {
-      flex-shrink: 0;
-      width: 160px; height: 160px; border-radius: 50%;
-      object-fit: cover; object-position: center top;
-      box-shadow: var(--shadow-2);
-    }
-    .hero-text {}
-    .hero-name {
-      font-family: 'Google Sans', 'Roboto', sans-serif;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 400; line-height: 1.15;
-      color: var(--text); margin-bottom: 12px;
-      letter-spacing: -0.5px;
-    }
-    .hero-name span { color: var(--primary); }
-    .hero-title {
-      font-size: 1.1rem; font-weight: 400;
-      color: var(--text-2); margin-bottom: 6px;
-    }
-    .hero-title strong { color: var(--primary); font-weight: 500; }
-    .hero-location {
-      font-size: 0.9rem; color: var(--text-3);
-      margin-bottom: 32px;
-    }
-    .hero-links { display: flex; gap: 12px; flex-wrap: wrap; }
-    .btn-filled {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 10px 24px; border-radius: 999px;
-      background: var(--primary); color: var(--on-primary);
-      font-size: 0.875rem; font-weight: 500;
-      text-decoration: none; transition: box-shadow .2s, background .15s;
-      box-shadow: var(--shadow-1);
-    }
-    .btn-filled:hover { background: var(--primary-dark); box-shadow: var(--shadow-2); }
-    .btn-outlined {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 9px 23px; border-radius: 999px;
-      border: 1px solid var(--outline);
-      background: transparent; color: var(--primary);
-      font-size: 0.875rem; font-weight: 500;
-      text-decoration: none; transition: background .15s, box-shadow .2s;
-    }
-    .btn-outlined:hover { background: var(--primary-light); box-shadow: var(--shadow-1); }
-
-    /* ── MAIN LAYOUT ── */
-    main { max-width: 800px; margin: 0 auto; padding: 48px 24px 80px; }
-
-    /* ── SECTIONS ── */
-    section { margin-bottom: 48px; }
-
-    .section-header { margin-bottom: 20px; }
-    .section-eyebrow {
-      font-size: 0.75rem; font-weight: 500; letter-spacing: 1.5px;
-      text-transform: uppercase; color: var(--primary);
-      margin-bottom: 4px;
-    }
-    .section-title {
-      font-family: 'Google Sans', 'Roboto', sans-serif;
-      font-size: clamp(1.4rem, 3vw, 1.75rem);
-      font-weight: 400; color: var(--text);
-    }
-
-    /* ── ABOUT CARD ── */
-    .about-card {
-      background: var(--surface);
-      border-radius: var(--radius-lg);
-      padding: 28px 32px;
-      box-shadow: var(--shadow-1);
-    }
-    .about-card p { color: var(--text-2); font-size: 1rem; line-height: 1.8; margin-bottom: 14px; }
-    .about-card p:last-child { margin-bottom: 0; }
-    .about-card strong { color: var(--text); font-weight: 500; }
-
-    /* ── TIMELINE CARDS ── */
-    .timeline { display: flex; flex-direction: column; gap: 16px; }
-    .tl-card {
-      background: var(--surface);
-      border-radius: var(--radius-lg);
-      padding: 24px 28px;
-      box-shadow: var(--shadow-1);
-      transition: box-shadow .2s;
-      border-left: 4px solid var(--primary-light);
-    }
-    .tl-card:hover { box-shadow: var(--shadow-2); border-left-color: var(--primary); }
-
-    .tl-company {
-      font-size: 0.75rem; font-weight: 500;
-      letter-spacing: 1px; text-transform: uppercase;
-      color: var(--primary); margin-bottom: 4px;
-    }
-    .tl-row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 12px; }
-    .tl-role { font-family: 'Google Sans', 'Roboto', sans-serif; font-size: 1.1rem; font-weight: 500; color: var(--text); }
-    .tl-period {
-      font-size: 0.8rem; color: var(--text-3);
-      background: var(--surface-2); padding: 3px 10px; border-radius: 999px;
-      white-space: nowrap;
-    }
-    .tl-desc { font-size: 0.9rem; color: var(--text-2); line-height: 1.8; border-top: 1px solid var(--outline-variant); padding-top: 12px; }
-    .tl-desc p { margin-bottom: 8px; }
-    .tl-desc p:last-child { margin-bottom: 0; }
-
-    /* ── EDUCATION CARD ── */
-    .edu-card {
-      background: var(--surface);
-      border-radius: var(--radius-lg);
-      padding: 24px 28px;
-      box-shadow: var(--shadow-1);
-      display: flex; align-items: center; gap: 20px;
-    }
-    .edu-icon-wrap {
-      width: 52px; height: 52px; border-radius: 50%;
-      background: var(--primary-light);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.5rem; flex-shrink: 0;
-    }
-    .edu-school { font-family: 'Google Sans', sans-serif; font-size: 1.05rem; font-weight: 500; color: var(--text); margin-bottom: 2px; }
-    .edu-major { font-size: 0.9rem; color: var(--text-2); margin-bottom: 2px; }
-    .edu-period { font-size: 0.8rem; color: var(--text-3); }
-
-    /* ── SKILLS ── */
-    .skills-container { display: flex; flex-direction: column; gap: 20px; }
-    .skill-group {}
-    .skill-group-label {
-      font-size: 0.8rem; font-weight: 500; letter-spacing: 1px;
-      text-transform: uppercase; color: var(--text-3);
-      margin-bottom: 10px;
-    }
-    .chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
-    .chip {
-      display: inline-flex; align-items: center;
-      padding: 6px 16px; border-radius: 999px;
-      font-size: 0.85rem; font-weight: 400;
-      border: 1px solid var(--outline);
-      background: var(--surface); color: var(--text-2);
-      transition: background .15s, color .15s, border-color .15s;
-    }
-    .chip:hover { background: var(--primary-light); border-color: var(--primary); color: var(--primary); }
-    .chip-blue { background: #E8F0FE; border-color: #C5D8FC; color: #1A73E8; }
-    .chip-green { background: #E6F4EA; border-color: #AECDB8; color: #137333; }
-    .chip-teal { background: #E6F3F8; border-color: #A8D1E1; color: #007B83; }
-
-    /* ── FOOTER ── */
-    footer {
-      text-align: center; padding: 32px 24px;
-      border-top: 1px solid var(--outline-variant);
-      color: var(--text-3); font-size: 0.85rem;
-    }
-    .footer-logo {
-      display: flex; align-items: center; justify-content: center; gap: 6px;
-      margin-bottom: 8px;
-    }
-    .footer-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
-
-    /* ── SCROLL ANIMATION ── */
-    .fade-up { opacity: 0; transform: translateY(20px); transition: opacity .5s ease, transform .5s ease; }
-    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    body { font-family: 'Roboto','Noto Sans JP',sans-serif; background: var(--surface-variant); color: var(--text); line-height: 1.6; min-height: 100vh; }
+    .top-nav { position:fixed; top:0; left:0; right:0; z-index:100; height:64px; padding:0 24px; display:flex; align-items:center; justify-content:space-between; background:var(--surface); border-bottom:1px solid var(--outline-variant); transition:box-shadow .2s; }
+    .top-nav.scrolled { box-shadow:var(--shadow-1); border-bottom-color:transparent; }
+    .nav-logo { display:flex; align-items:center; gap:12px; text-decoration:none; }
+    .nav-logo-img { width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid var(--outline); }
+    .nav-logo-name { font-family:'Google Sans','Roboto',sans-serif; font-size:1.1rem; font-weight:500; color:var(--text); }
+    .nav-links { display:flex; gap:4px; list-style:none; }
+    .nav-links a { display:inline-block; padding:8px 16px; border-radius:999px; font-size:.875rem; font-weight:500; color:var(--text-2); text-decoration:none; transition:background .15s,color .15s; }
+    .nav-links a:hover { background:var(--surface-2); color:var(--text); }
+    .hero { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:96px 24px 64px; background:var(--surface); }
+    .hero-inner { max-width:720px; width:100%; display:flex; align-items:center; gap:64px; }
+    .hero-photo { flex-shrink:0; width:160px; height:160px; border-radius:50%; object-fit:cover; object-position:center top; box-shadow:var(--shadow-2); }
+    .hero-name { font-family:'Google Sans','Roboto',sans-serif; font-size:clamp(2rem,5vw,3.5rem); font-weight:400; line-height:1.15; color:var(--text); margin-bottom:12px; letter-spacing:-.5px; }
+    .hero-name span { color:var(--primary); }
+    .hero-title { font-size:1.1rem; font-weight:400; color:var(--text-2); margin-bottom:6px; }
+    .hero-title strong { color:var(--primary); font-weight:500; }
+    .hero-location { font-size:.9rem; color:var(--text-3); margin-bottom:32px; }
+    .hero-links { display:flex; gap:12px; flex-wrap:wrap; }
+    .btn-filled { display:inline-flex; align-items:center; gap:6px; padding:10px 24px; border-radius:999px; background:var(--primary); color:var(--on-primary); font-size:.875rem; font-weight:500; text-decoration:none; transition:box-shadow .2s,background .15s; box-shadow:var(--shadow-1); }
+    .btn-filled:hover { background:var(--primary-dark); box-shadow:var(--shadow-2); }
+    .btn-outlined { display:inline-flex; align-items:center; gap:6px; padding:9px 23px; border-radius:999px; border:1px solid var(--outline); background:transparent; color:var(--primary); font-size:.875rem; font-weight:500; text-decoration:none; transition:background .15s,box-shadow .2s; }
+    .btn-outlined:hover { background:var(--primary-light); box-shadow:var(--shadow-1); }
+    main { max-width:800px; margin:0 auto; padding:48px 24px 80px; }
+    section { margin-bottom:48px; }
+    .section-header { margin-bottom:20px; }
+    .section-eyebrow { font-size:.75rem; font-weight:500; letter-spacing:1.5px; text-transform:uppercase; color:var(--primary); margin-bottom:4px; }
+    .section-title { font-family:'Google Sans','Roboto',sans-serif; font-size:clamp(1.4rem,3vw,1.75rem); font-weight:400; color:var(--text); }
+    .about-card { background:var(--surface); border-radius:var(--radius-lg); padding:28px 32px; box-shadow:var(--shadow-1); }
+    .about-card p { color:var(--text-2); font-size:1rem; line-height:1.8; margin-bottom:14px; }
+    .about-card p:last-child { margin-bottom:0; }
+    .about-card strong { color:var(--text); font-weight:500; }
+    .timeline { display:flex; flex-direction:column; gap:16px; }
+    .tl-card { background:var(--surface); border-radius:var(--radius-lg); padding:24px 28px; box-shadow:var(--shadow-1); transition:box-shadow .2s; border-left:4px solid var(--primary-light); }
+    .tl-card:hover { box-shadow:var(--shadow-2); border-left-color:var(--primary); }
+    .tl-company { font-size:.75rem; font-weight:500; letter-spacing:1px; text-transform:uppercase; color:var(--primary); margin-bottom:4px; }
+    .tl-row { display:flex; justify-content:space-between; align-items:baseline; gap:16px; flex-wrap:wrap; margin-bottom:12px; }
+    .tl-role { font-family:'Google Sans','Roboto',sans-serif; font-size:1.1rem; font-weight:500; color:var(--text); }
+    .tl-period { font-size:.8rem; color:var(--text-3); background:var(--surface-2); padding:3px 10px; border-radius:999px; white-space:nowrap; }
+    .tl-desc { font-size:.9rem; color:var(--text-2); line-height:1.8; border-top:1px solid var(--outline-variant); padding-top:12px; }
+    .tl-desc p { margin-bottom:10px; }
+    .tl-desc p:last-child { margin-bottom:0; }
+    .edu-card { background:var(--surface); border-radius:var(--radius-lg); padding:24px 28px; box-shadow:var(--shadow-1); display:flex; align-items:center; gap:20px; }
+    .edu-icon-wrap { width:52px; height:52px; border-radius:50%; background:var(--primary-light); display:flex; align-items:center; justify-content:center; font-size:1.5rem; flex-shrink:0; }
+    .edu-school { font-family:'Google Sans',sans-serif; font-size:1.05rem; font-weight:500; color:var(--text); margin-bottom:2px; }
+    .edu-major { font-size:.9rem; color:var(--text-2); margin-bottom:2px; }
+    .edu-period { font-size:.8rem; color:var(--text-3); }
+    .skills-container { display:flex; flex-direction:column; gap:20px; }
+    .skill-group-label { font-size:.8rem; font-weight:500; letter-spacing:1px; text-transform:uppercase; color:var(--text-3); margin-bottom:10px; }
+    .chip-row { display:flex; flex-wrap:wrap; gap:8px; }
+    .chip { display:inline-flex; align-items:center; padding:6px 16px; border-radius:999px; font-size:.85rem; font-weight:400; border:1px solid var(--outline); background:var(--surface); color:var(--text-2); }
+    .chip-blue { background:#E8F0FE; border-color:#C5D8FC; color:#1A73E8; }
+    .chip-green { background:#E6F4EA; border-color:#AECDB8; color:#137333; }
+    .chip-teal { background:#E6F3F8; border-color:#A8D1E1; color:#007B83; }
+    footer { text-align:center; padding:32px 24px; border-top:1px solid var(--outline-variant); color:var(--text-3); font-size:.85rem; }
+    .footer-logo { display:flex; align-items:center; justify-content:center; gap:6px; margin-bottom:8px; }
+    .footer-dot { width:8px; height:8px; border-radius:50%; display:inline-block; }
+    .fade-up { opacity:0; transform:translateY(20px); transition:opacity .5s ease,transform .5s ease; }
+    .fade-up.visible { opacity:1; transform:translateY(0); }
   </style>
 </head>
 <body>
-
 <nav class="top-nav" id="nav">
   <a class="nav-logo" href="#">
     <img class="nav-logo-img" src="profile.jpg" alt="Tesong Kim" onerror="this.style.display='none'">
@@ -263,7 +101,6 @@
   </ul>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
     <img class="hero-photo" src="profile.jpg" alt="Tesong Kim" onerror="this.style.display='none'">
@@ -280,22 +117,18 @@
   </div>
 </section>
 
-<!-- MAIN CONTENT -->
 <main>
-
-  <!-- ABOUT -->
   <section id="about" class="fade-up">
     <div class="section-header">
       <p class="section-eyebrow">About Me</p>
       <h2 class="section-title">自己紹介</h2>
     </div>
     <div class="about-card">
-      <p>日韓をまたぎる<strong>シリアルアントレプレナー</strong>として、ECおよびクロスボーダーコマース領域で１０年以上の実績を持ちます。早稲田大学在学中に日本初の韓国コスメECサイト「Cross Cart」を立ち上げ、一人のゼロから月声１，０００万円規模へと成長させた経験が原点です。</p>
-      <p>その後、インドネシアECプラットフォームのリクルートライフスタイル社、越境EC支援のmagi株式会社、インドネシア発越境ECの株式会社Bewith Global（Besetoブランド）を経て、現在は<strong>want.jp株式会社</strong>を初業・経営しています。</p>
-      <p>一貫したテーマは「アジア市場をまたぎる商取引の最適化」です。テクノロジーと事業開発の両輪で新規市場を開拓し、<strong>越境EC・サービスマーケットプレイス・インバウンド</strong>の分野でプロダクトと収益を共に立ち上げてきました。</p>
+      <p>日韓をまたぎる起業家。日本内・EC運営・グローバル展開に15年以上従事。</p>
+      <p>楽天インターネットにて日本のECファッション部門を統括後、楽天インドネシアを割筋設立・運営。その後2013年にインドネシアにて同国最大級ファッションEC「VIP Plaza」を創業。ブランド数１，０００+社、会員数１，０００，０００+人、従業員200+名へと成長させるも、天変地異により2019年にクローズ。</p>
+      <p>2018年より<strong>want.jp株式会社</strong>を創業。「世界流通の次のあたりまえを創る」をビジョンに、あらゆる日本商品を世界中のカスタマーに、日本と同等水準の価格で、世界のどこでも送料無料で3日で届ける仑5組みを構築中。壳上は毎月平均２０％超の成長、昨年比800％で急成長。Z HoldingsグループやCyber Agentグループ等からの大型資金調達を受けている。</p>
     </div>
   </section>
-  <!-- EXPERIENCE -->
   <section id="experience" class="fade-up">
     <div class="section-header">
       <p class="section-eyebrow">Work History</p>
@@ -307,65 +140,63 @@
         <p class="tl-company">want.jp株式会社</p>
         <div class="tl-row">
           <span class="tl-role">Founder &amp; CEO</span>
-          <span class="tl-period">2023年 &mdash; 現在</span>
+          <span class="tl-period">2018年2月 &mdash; 現在</span>
         </div>
         <div class="tl-desc">
-          <p>インバウンド消費の拡大を背景に、訪日外国人向けのサービスマーケットプレイス「want.jp」を初業・運営しています。</p>
-          <p>プロダクト開発から営業、マーケティング、資金調達まで全領域を統括し、事業の立ち上げを推進しています。</p>
+          <p><strong>■ Vision</strong><br>世界流通の次のあたりまえを創る／Drive the next standard for global commerce</p>
+          <p><strong>■ Mission</strong><br>世界中のカスタマーが世界中の商品にアクセスし、フェアな価格と最高の利便性で購入できる体験を提供する／Provide global customers with extreme convenience to access products from all over the world at the lowest possible price</p>
+          <p>あらゆる日本商品を，日本と同等水準の価格で，世界のどこでも送料無料で3日で届ける。世界中のカスタマーがあらゆる日本商品を真に「日常買い」することができる唯一無二の仕組みを創っており、壳上は毎月平均２０％超の成長、昨年比800％で急成長しています。</p>
+          <p>例えば，日本商品を買おうと思ったブラジル人のほぼ100%が，ブラジルの現地のECモールでポルトガル語で検索し，商品を探します。検索結果は当然ゼロ・・・買えない。そのうちのたった1%の稀有な人だけがGoogleでグローバル検索し，どうにか日本のECサイトにたどり着き，難解なGoogle翻訳された日本語ページを解読し，高い送料を払って，3週間待ってようやく商品が手元に届く。これが日本のグローバルECの現実です。</p>
+          <p>世界のEC市場が250兆円，そのうちクロスボーダー比20%になってきている中，日本のEC市場のクロスボーダー比率はわずか1%に満たない。その理由は，「ユーザビリティを全く無視した事業者本位のサービス設計」によるものです。我々はこの問題を根本的に解決し，「あらゆる日本商品を世界中のカスタマーに，日本と同等水準の価格で，世界のどこでも送料無料で3日で届ける」仕組み創りに取り組んでおります。Z HoldingsグループやCyber Agentグループ等からの大型資金調達を受けており，今後加速する世界戦に向けてスピード感を持って動き始めています。</p>
         </div>
       </div>
 
       <div class="tl-card">
-        <p class="tl-company">株式会社Bewith Global</p>
+        <p class="tl-company">PT Mandom Indonesia Tbk</p>
         <div class="tl-row">
-          <span class="tl-role">Business Development Manager</span>
-          <span class="tl-period">2021年 &mdash; 2023年</span>
+          <span class="tl-role">Independent Commissioner</span>
+          <span class="tl-period">2018年4月 &mdash; 2022年3月</span>
         </div>
         <div class="tl-desc">
-          <p>インドネシアから日本への越境EC「Beseto」のビジネス開発を担当。インドネシアの中小規模製造業・ブランドと日本のバイヤー・消費者をつなぎ、サプライチェーンの構築を推進しました。</p>
-          <p>現地サプライヤーの開拓・交渉、日本側の販路開拓、物流・通関フローの整備など、クロスボーダー取引の全プロセスをハンズオンで遅順しました。</p>
+          <p>インドネシア ジャカルタにてインドネシア上場企業・PT Mandom Indonesia Tbkの社外取締役を務める。</p>
         </div>
       </div>
 
       <div class="tl-card">
-        <p class="tl-company">magi株式会社</p>
+        <p class="tl-company">VIP Plaza</p>
         <div class="tl-row">
-          <span class="tl-role">事業開発 / マーケティング</span>
-          <span class="tl-period">2019年 &mdash; 2021年</span>
+          <span class="tl-role">Founder &amp; CEO</span>
+          <span class="tl-period">2013年9月 &mdash; 2019年8月</span>
         </div>
         <div class="tl-desc">
-          <p>日本中小企業の海外展開（主に東南アジア・韓国向け越境EC）を支援するコンサルティング・プラットフォーム事業に従事。クライアントの越境EC戦略の立案から実行支援までを担当しました。</p>
-          <p>新規顧客獲得のためのマーケティング施策立案・実行、パートナーシップ開拓、サービス改善のためのプロダクトフィードバックなど、事業全体の成長をドライブしました。</p>
+          <p>2013年にインドネシアにてVIP Plaza（同国最大級のファッションEC）を創業。インドネシア中間層をターゲットに在庫処分のフラッシュセール、バイク便による即日配送、自社通貨のVIP Cashなどを展開。ブランド斑１，０００+社、会員斑１，０００，０００+人、従業員200+名へ成長するも、天変地異により2019年にクローズ。</p>
         </div>
       </div>
 
       <div class="tl-card">
-        <p class="tl-company">リクルートライフスタイル株式会社</p>
+        <p class="tl-company">Rakuten</p>
         <div class="tl-row">
-          <span class="tl-role">プロダクトマネージャー（インドネシア事業）</span>
-          <span class="tl-period">2016年 &mdash; 2019年</span>
+          <span class="tl-role">Director at Rakuten Indonesia</span>
+          <span class="tl-period">2010年 &mdash; 2013年</span>
         </div>
         <div class="tl-desc">
-          <p>リクルートのインドネシア向けECプラットフォーム事業において、プロダクトマネジメントを担当。現地のユーザーニーズを調査・分析し、プロダクトロードマップの策定と機能開発の優先順位付けを行いました。</p>
-          <p>ジャカルタのローカルチームと東京の開発チームをつなぎ、アジャイルな開発サイクルをリードし、会員数の大幅な拡大に貢献しました。インドネシア市場特有の決済・物流・文化的課題を解決するための施策立案と実行を主導しました。</p>
+          <p>Established &amp; managed Rakuten Indonesia, joint venture between Rakuten (#1 e-commerce company in Japan) and MNC (#1 Media group in Indonesia). Pioneer of setting up e-commerce marketplace in Indonesia.</p>
         </div>
       </div>
 
       <div class="tl-card">
-        <p class="tl-company">個人事業（Cross Cart）</p>
+        <p class="tl-company">Rakuten</p>
         <div class="tl-row">
-          <span class="tl-role">創業者</span>
-          <span class="tl-period">2013年 &mdash; 2016年</span>
+          <span class="tl-role">E-commerce Manager at Rakuten Japan</span>
+          <span class="tl-period">2008年 &mdash; 2010年</span>
         </div>
         <div class="tl-desc">
-          <p>早稲田大学在学中に、日本初の韓国コスメ越境ECサイト「Cross Cart」を初業。当時、日本国内でまだ入手困難だった韓国コスメを日本の消費者に届けるサービスを一人でゼロから立ち上げました。</p>
-          <p>仕入れ・商品登録・カスタマーサポート・配送手配・マーケティングまで全業務を自身で担い、月声１，０００万円規模へと成長。日韓間の越境ECにおける実務知識とアントレプレナーシップの原点となった経験です。</p>
+          <p>Rakuten is the leading e-commerce and e-service conglomerates in Japan. Managed its e-commerce fashion division, and established Rakuten Northern-Tokyo branch. Led 20 staffs to consult 2,000+ merchants for $1.5B+ annual GMV. Made +40% YoY growth in GMV, and got the CEO Award.</p>
         </div>
       </div>
 
     </div>
   </section>
-  <!-- EDUCATION -->
   <section id="education" class="fade-up">
     <div class="section-header">
       <p class="section-eyebrow">Education</p>
@@ -374,14 +205,13 @@
     <div class="edu-card">
       <div class="edu-icon-wrap">🎓</div>
       <div>
-        <p class="edu-school">早稲田大学</p>
-        <p class="edu-major">商学部</p>
-        <p class="edu-period">2011年 &mdash; 2015年</p>
+        <p class="edu-school">早稲田大学 (WASEDA University)</p>
+        <p class="edu-major">Political Science / Bachelor's degree</p>
+        <p class="edu-period">2003年 &mdash; 2008年</p>
       </div>
     </div>
   </section>
 
-  <!-- SKILLS -->
   <section id="skills" class="fade-up">
     <div class="section-header">
       <p class="section-eyebrow">Skills</p>
@@ -391,28 +221,30 @@
       <div class="skill-group">
         <p class="skill-group-label">事業開発・EC</p>
         <div class="chip-row">
+          <span class="chip chip-blue">E-commerce</span>
           <span class="chip chip-blue">越境EC</span>
-          <span class="chip chip-blue">新規事業立ち上げ</span>
           <span class="chip chip-blue">マーケットプレイス運営</span>
-          <span class="chip chip-blue">サプライチェーン構築</span>
-          <span class="chip chip-blue">事業戦略</span>
+          <span class="chip chip-blue">スタートアップ経営</span>
+          <span class="chip chip-blue">資金調達</span>
+          <span class="chip chip-blue">グローバル展開</span>
         </div>
       </div>
       <div class="skill-group">
-        <p class="skill-group-label">プロダクト・テクノロジー</p>
+        <p class="skill-group-label">マーケティング・デジタル</p>
         <div class="chip-row">
+          <span class="chip chip-green">Digital Marketing</span>
           <span class="chip chip-green">プロダクトマネジメント</span>
-          <span class="chip chip-green">アジャイル開発</span>
+          <span class="chip chip-green">グロースハック</span>
           <span class="chip chip-green">データ分析</span>
-          <span class="chip chip-green">UX設計</span>
         </div>
       </div>
       <div class="skill-group">
         <p class="skill-group-label">言語・地域</p>
         <div class="chip-row">
-          <span class="chip chip-teal">日本語（流數）</span>
-          <span class="chip chip-teal">韓国語（母国語）</span>
-          <span class="chip chip-teal">英語（ビジネスレベル）</span>
+          <span class="chip chip-teal">日本語</span>
+          <span class="chip chip-teal">韓国語</span>
+          <span class="chip chip-teal">英語</span>
+          <span class="chip chip-teal">インドネシア語</span>
           <span class="chip chip-teal">日本市場</span>
           <span class="chip chip-teal">インドネシア市場</span>
           <span class="chip chip-teal">韓国市場</span>
@@ -420,7 +252,6 @@
       </div>
     </div>
   </section>
-
 </main>
 
 <footer>
@@ -434,18 +265,12 @@
 </footer>
 
 <script>
-  // Nav shadow on scroll
   const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 10);
-  });
-
-  // Fade-up animation
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 10); });
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.08 });
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
-
 </body>
 </html>
